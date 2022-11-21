@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+    <head>
+        <title>HLS Rocks</title>
+        <style>
+            video {
+                width: 640px;
+                height: 360px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <video data-dashjs-player id="videoPlayer" src="../Vid_Processor/sample/sample.m3u8" controls></video>
+        </div>
+        <script src="hls.min.js"></script>
+        <script>
+            (function(){
+                if (document.querySelector("#videoPlayer").canPlayType('application/vnd.apple.mpegurl')) {
+                    console.log('ddd')
+                } else if (Hls.isSupported()) {
+                    var hls = new Hls({
+                        maxBufferLength: 10
+                    });
+                    hls.loadSource(document.querySelector("#videoPlayer").src);
+                    hls.attachMedia(document.querySelector("#videoPlayer"));
+                }
+            })();
+
+        </script>
+    </body>
+</html>

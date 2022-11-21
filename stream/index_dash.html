@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Dash.js Rocks</title>
+        <style>
+            video {
+                width: 640px;
+                height: 360px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <video data-dashjs-player id="videoPlayer" src="../Vid_Processor/mpd3/sample.mpd" controls></video>
+        </div>
+        <script src="dash.min.js"></script>
+        <script>
+            (function(){
+                var player = dashjs.MediaPlayer().create();
+                player.updateSettings({
+                    streaming: {
+                        stableBufferTime: 1,
+                        bufferTimeAtTopQuality: 3
+                    }
+                });
+                player.initialize(document.querySelector("#videoPlayer"), document.querySelector("#videoPlayer").src, false);
+            })();
+
+        </script>
+    </body>
+</html>
